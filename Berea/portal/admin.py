@@ -1,8 +1,14 @@
 from django.contrib import admin
-from .models import Student
+from .models import Student, Unit
 
 # Register your models here.
-class SrudentAdmin(admin.ModelAdmin):
+class StudentAdmin(admin.ModelAdmin):
     filter_horizontal=('tags',)
 
 admin.site.register(Student)
+
+class UnitAdmin(admin.ModelAdmin):
+    filter_horizontal = ('tags',)
+
+admin.site.register(Unit)
+
