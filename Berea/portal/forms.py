@@ -15,6 +15,7 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2' ,)
 
 class ClassRoomForm(forms.ModelForm):
+    class_name = forms.CharField(max_length=30)
 
     class Meta:
         model = Classroom
