@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'portal.apps.PortalConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'bootstrap4',
+=======
+    
+>>>>>>> master
 ]
 
 MIDDLEWARE = [
@@ -79,8 +84,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'berea',
+<<<<<<< HEAD
         'USER': 'charles',
         'PASSWORD':'chweezyy94',
+=======
+        'USER': 'emmanuel',
+        'PASSWORD': '123456',
+
+>>>>>>> master
     }
 }
 
@@ -122,5 +133,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 
 LOGIN_REDIRECT_URL = "home"
+=======
+LOGIN_REDIRECT_URL = "studentportal"
+LOGIN_URL = 'login'
+>>>>>>> master

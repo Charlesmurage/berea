@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from .forms import StudentSignUp
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import login, authenticate
 
@@ -8,6 +11,11 @@ from .models import Classroom
 from .forms import SignUpForm, ClassRoomForm
 
 # Create your views here.
+@login_required
+def home(request):
+
+    return render(request, 'portal/home.html')
+
 def signup(request):
     return render (request, 'portal/signup.html')
 
@@ -53,3 +61,14 @@ def classes(request):
     
     print(classes)
     return render(request,'classes.html',{'classes':classes})
+    if request.method == 'POST':
+        form = StudentSignUp(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('login')
+
+    else:
+        form = StudentSignUp()
+    return render (request, 'portal/signup.html', {'form':form})

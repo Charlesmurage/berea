@@ -8,5 +8,6 @@ urlpatterns =[
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url(r'^new/class$', views.new_class, name='new-class'),
+    url(r'signup/$', views.signup, name='signup'),
 
 ]

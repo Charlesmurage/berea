@@ -3,7 +3,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from .models import Classroom
+from django.contrib.auth import get_user_model, authenticate
 
+
+User= get_user_model()
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -20,3 +23,15 @@ class ClassRoomForm(forms.ModelForm):
     class Meta:
         model = Classroom
         fields = ['class_name']
+
+
+
+
+class StudentSignUp(UserCreationForm):
+    first_name= forms.CharField(required=True)
+    last_name= forms.CharField(required=True)
+    email= forms.EmailField()
+    
+    class Meta:
+        model = User
+        fields =['first_name', 'last_name','username','email','password1','password2'] 

@@ -1,0 +1,33 @@
+{% extends 'portal/regbase.html'%}
+{% load bootstrap4 %}
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="loggi">
+            <h2>Log In</h2>
+              <form class="form-group"  method="POST" enctype="multipart/form-data">
+              {%csrf_token%}
+              {%bootstrap_form form%}
+              <button class="btn btn-default" type="submit" name="button">Log in</button>
+              <br> <br>
+            </form>
+            <div class="col-md-6">
+              <small class="text-muted">
+                  Need an account ? <a href=" {% url 'signup' %}"> Sign Up </a>
+              </small>
+          </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+{% endblock %}
