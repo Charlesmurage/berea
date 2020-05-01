@@ -17,7 +17,7 @@ class Student(models.Model):
     nationality = models.CharField(max_length=30)
     phoneNo = models.CharField(max_length=30)
     avatar = models.ImageField(upload_to='avatar', blank=True)
-
+    classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.studentID
@@ -31,6 +31,8 @@ class Unit(models.Model):
 
     def __str__(self):
         return self.unit_name
+
+
 
         
 
