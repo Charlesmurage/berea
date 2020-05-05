@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, Unit, Classroom
+from .models import Student, Unit, Classroom, Membership
 
 # Register your models here.
 class StudentAdmin(admin.ModelAdmin):
@@ -13,6 +13,12 @@ class UnitAdmin(admin.ModelAdmin):
 admin.site.register(Unit)
 
 class ClassroomAdmin(admin.ModelAdmin):
-    filter_horizontal =('tags',)
+    filter_horizontal = ('tags',)
+
 admin.site.register(Classroom)
 
+
+class MembershipAdmin(admin.ModelAdmin):
+    filter_horizontal = ('tags',)
+
+admin.site.register(Membership)

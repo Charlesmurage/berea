@@ -2,22 +2,28 @@ from django.shortcuts import render,redirect
 from .forms import StudentSignUp
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Classroom
+from django.contrib.auth import login, authenticate
+from .forms import SignUpForm, ClassRoomForm
 
 from django.contrib.auth import login, authenticate
 
 from django.shortcuts import render, redirect
 from .models import Classroom
 
-from .forms import SignUpForm, ClassRoomForm
+from .forms import SignUpForm, ClassRoomForm,StudentSignUp
 
 # Create your views here.
 @login_required
 def home(request):
 
-    return render(request, 'portal/home.html')
+    return render(request, 'tutorhome.html')
+
 
 def signup(request):
-    return render (request, 'portal/signup.html')
+    form = StudentSignUp()
+
+    return render (request, 'portal/signup.html', {'form' : form })
 
 
 def home_view(request):
@@ -72,3 +78,27 @@ def classes(request):
     else:
         form = StudentSignUp()
     return render (request, 'portal/signup.html', {'form':form})
+
+def new_class(request):
+    current_user = request.user
+    if request.method =='POST':
+        form = ClassRoomForm(request.POST, request.FILES)
+
+
+        if form.is_valid():
+            group = form.save(commit=False)
+
+            group.save()
+            return redirect('home')
+
+    else:
+        form = ClassRoomForm()
+    return render(request, 'new_class.html', {"form":form})
+
+def classes(request):
+    print("-" * 30)
+    print("Hello")
+    classes= Classroom.objects.all()
+    
+    print(classes)
+    return render(request,'classes.html',{'classes':classes})

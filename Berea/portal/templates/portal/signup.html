@@ -1,11 +1,6 @@
-<h1>signup
-    <a href="{% url 'logout' %}">logout</a><br>
-    <a href="{% url 'new-class' %}">New Class</a>
-</h1>
 {% extends 'portal/regbase.html'%}
 {% load bootstrap4 %}
 {% block content %}
-
 <br>
 <br>
 <br>
@@ -18,7 +13,7 @@
             <h2>Student SignUp</h2>
               <form class="form-group"  method="POST" enctype="multipart/form-data">
               {%csrf_token%}
-              {%bootstrap_form form%}
+              {%bootstrap_form form %}
               <button class="btn btn-default" type="submit" name="button">Sign Up</button>
               <br> <br>
               <div class="form-group col-mb-3">
