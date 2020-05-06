@@ -27,9 +27,9 @@ class Classroom(models.Model):
         return self.class_name
 
 
+
 class Unit(models.Model):
     unit_name = models.CharField(max_length= 60)
-    notes = models.FileField(null = True)
     unit_code = models.CharField(max_length=60)
     tutor_name = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_createdby', on_delete=models.CASCADE)
     tutor_contact = models.CharField(max_length=10)
@@ -39,7 +39,9 @@ class Unit(models.Model):
     def __str__(self):
         return self.unit_name
 
-        
+class Notes(models.Model):
+    note = models.FileField(null = True, upload_to='notes')
+    unit = models.ForeignKey(Unit, on_delete= models.CASCADE, null = True)        
 
 
 class Membership(models.Model):

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import StudentSignUp
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Classroom, Unit
+from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm, ClassRoomForm
 
@@ -65,7 +65,12 @@ def classes(request):
     return render(request,'class.html',{'classes':classes})
 
 
-def units(request):
-    unit = Unit.objects.all()
+def units(request,un_id):
+    unit = Unit.objects.filter(classroom_id=un_id)
     # print([x.classname for x in classes])
     return render(request,'units.html',{"unit": unit})
+
+
+def notes(request,not_id):
+    notes = Notes.objects.filter(unit_id=not_id)
+    return render(request,'notes.html',{"notes": notes})
