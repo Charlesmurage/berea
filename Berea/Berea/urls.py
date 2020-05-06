@@ -15,7 +15,8 @@ urlpatterns = [
     path('tutorlogin/',auth_views.LoginView.as_view(template_name='tutorlogin.html'),name='tutorlogin'),
     path('logout/', auth_views.LogoutView.as_view(template_name='portal/logout.html'), name='logout'),
     path('logout/', auth_views.LogoutView.as_view, {'next_page': 'tutorlogin'}, name='tutorlogout'),
-    path('classes/all',views.classes, name="classes"),
+    path('classes/',views.classes, name="classes"),
+    path('classes/units/all/',views.units, name="unit"),
     
     path('StudentPortal/',home, name='studentportal')
     

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import StudentSignUp
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Classroom
+from .models import Classroom, Unit
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm, ClassRoomForm
 
@@ -62,4 +62,10 @@ def classes(request):
     classes= Classroom.objects.all()
     
     print(classes)
-    return render(request,'classes.html',{'classes':classes})
+    return render(request,'class.html',{'classes':classes})
+
+
+def units(request):
+    unit = Unit.objects.all()
+    # print([x.classname for x in classes])
+    return render(request,'units.html',{"unit": unit})

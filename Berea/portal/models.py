@@ -18,24 +18,28 @@ class Student(models.Model):
     def __str__(self):
         return self.firstname
 
+
+class Classroom(models.Model):
+    class_name = models.CharField(max_length=200)
+    students = models.ManyToManyField(Student, through='Membership')
+    
+    def __str__(self):
+        return self.class_name
+
+
 class Unit(models.Model):
     unit_name = models.CharField(max_length= 60)
+    notes = models.FileField(null = True)
     unit_code = models.CharField(max_length=60)
     tutor_name = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_createdby', on_delete=models.CASCADE)
     tutor_contact = models.CharField(max_length=10)
+    classroom = models.ForeignKey(Classroom, on_delete= models.CASCADE, null = True)
 
 
     def __str__(self):
         return self.unit_name
 
         
-class Classroom(models.Model):
-    class_name = models.CharField(max_length=200)
-    students = models.ManyToManyField(Student, through='Membership')
-    units = models.ForeignKey(Unit ,on_delete=models.CASCADE, null= True, blank= True )
-
-    def __str__(self):
-        return self.class_name
 
 
 class Membership(models.Model):
