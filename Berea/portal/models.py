@@ -41,7 +41,10 @@ class Unit(models.Model):
 
 class Notes(models.Model):
     note = models.FileField(null = True, upload_to='notes')
-    unit = models.ForeignKey(Unit, on_delete= models.CASCADE, null = True)        
+    unit = models.ForeignKey(Unit, on_delete= models.CASCADE, null = True)  
+
+    # def __str__(self):
+    #     return self.unit_name      
 
 
 class Membership(models.Model):

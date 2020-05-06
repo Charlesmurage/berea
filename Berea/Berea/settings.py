@@ -126,5 +126,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-LOGIN_REDIRECT_URL = "studentportal"
+LOGIN_REDIRECT_URL = "classes"
 LOGIN_URL = 'login'

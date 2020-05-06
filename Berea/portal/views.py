@@ -10,7 +10,7 @@ from .forms import SignUpForm, ClassRoomForm
 @login_required
 def home(request):
 
-    return render(request, 'tutorhome.html')
+    return render(request, 'class.html')
 
 
 def signup(request):
@@ -55,7 +55,7 @@ def new_class(request):
     else:
         form = ClassRoomForm()
     return render(request, 'new_class.html', {"form":form})
-
+@login_required(login_url='/login/')
 def classes(request):
     print("-" * 30)
     print("Hello")
@@ -64,13 +64,13 @@ def classes(request):
     print(classes)
     return render(request,'class.html',{'classes':classes})
 
-
+@login_required(login_url='/login/')
 def units(request,un_id):
     unit = Unit.objects.filter(classroom_id=un_id)
     # print([x.classname for x in classes])
     return render(request,'units.html',{"unit": unit})
 
-
+@login_required(login_url='/login/')
 def notes(request,not_id):
     notes = Notes.objects.filter(unit_id=not_id)
     return render(request,'notes.html',{"notes": notes})
