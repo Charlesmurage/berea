@@ -1,38 +1,20 @@
 from django.shortcuts import render,redirect
-from .forms import StudentSignUp
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Classroom
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm, ClassRoomForm
-
-from django.contrib.auth import login, authenticate
-
-from django.shortcuts import render, redirect
 from .models import Classroom
-
-from .forms import SignUpForm, ClassRoomForm,StudentSignUp
+from .forms import ClassRoomForm,StudentSignUp
 
 # Create your views here.
+
 @login_required
-def home(request):
-
-    return render(request, 'tutorhome.html')
-
-
-def signup(request):
-    form = StudentSignUp()
-
-    return render (request, 'portal/signup.html', {'form' : form })
-
-
 def home_view(request):
-    return render(request, 'home.html')
+    return render(request, 'portal/home.html')
 
 
 def signup_view(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = StudentSignUp(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -41,7 +23,7 @@ def signup_view(request):
             login(request, user)
             return redirect('login')
     else:
-        form = SignUpForm()
+        form = StudentSignUp()
     return render(request, 'signup_view.html', {'form': form})
 
 def new_class(request):
