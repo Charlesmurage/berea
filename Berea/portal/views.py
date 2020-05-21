@@ -10,7 +10,7 @@ from .forms import ClassRoomForm,StudentSignUp
 
 @login_required
 def home_view(request):
-    return render(request, 'portal/home.html')
+    return render(request, 'student/index.html')
 
 
 def signup_view(request):
@@ -43,24 +43,7 @@ def new_class(request):
         form = ClassRoomForm()
     return render(request, 'new_class.html', {"form":form})
 
-def classes(request):
-    print("-" * 30)
-    print("Hello")
-    classes= Classroom.objects.all()
-    
-    print(classes)
-    return render(request,'classes.html',{'classes':classes})
-    if request.method == 'POST':
-        form = StudentSignUp(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('login')
 
-    else:
-        form = StudentSignUp()
-    return render (request, 'portal/signup.html', {'form':form})
 
 def new_class(request):
     current_user = request.user

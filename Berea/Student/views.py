@@ -1,5 +1,11 @@
 from django.shortcuts import render
+from portal.models import Classroom
 
 # Create your views here.
 def Home(request):
-    return render (request, 'student/home.html')
+    print("-" * 30)
+    print("Hello")
+    classes= Classroom.objects.all()
+    return render (request, 'students/index.html',{'classes':classes})
+
+

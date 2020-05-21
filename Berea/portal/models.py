@@ -7,7 +7,7 @@ from django.conf import settings
 
 class Classroom(models.Model):
     class_name = models.CharField(max_length=200)
-    students = models.ManyToManyField(Student, through='Membership')
+    students = models.ManyToManyField( 'Student', related_name = 'Student', through='Membership')
     
     def __str__(self):
         return self.class_name
