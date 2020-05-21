@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
 from .models import Classroom
 from .forms import ClassRoomForm,StudentSignUp
@@ -76,11 +77,22 @@ def new_class(request):
     else:
         form = ClassRoomForm()
     return render(request, 'new_class.html', {"form":form})
-
+@login_required(login_url='/login/')
 def classes(request):
     print("-" * 30)
     print("Hello")
     classes= Classroom.objects.all()
     
     print(classes)
-    return render(request,'classes.html',{'classes':classes})
+    return render(request,'class.html',{'classes':classes})
+
+@login_required(login_url='/login/')
+def units(request,un_id):
+    unit = Unit.objects.filter(classroom_id=un_id)
+    # print([x.classname for x in classes])
+    return render(request,'units.html',{"unit": unit})
+
+@login_required(login_url='/login/')
+def notes(request,not_id):
+    notes = Notes.objects.filter(unit_id=not_id)
+    return render(request,'notes.html',{"notes": notes})
