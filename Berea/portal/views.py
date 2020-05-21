@@ -5,27 +5,29 @@ from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
 from .models import Classroom
 from .forms import ClassRoomForm,StudentSignUp
+from .decorators import allowed_users
+from django.contrib.auth.models import Group
 
 # Create your views here.
 
 @login_required
 def home_view(request):
-    return render(request, 'class.html')
+    return render(request, 'portal/index.html')
 
 
 def signup_view(request):
     if request.method == 'POST':
         form = StudentSignUp(request.POST)
         if form.is_valid():
-            form.save()
+            user=form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            group = Group.objects.get(name='students')
+            user.groups.add(group)
             return redirect('login')
     else:
         form = StudentSignUp()
-    return render(request, 'signup_view.html', {'form': form})
+    return render(request, 'portal/signup_view.html', {'form': form})
 
 def new_class(request):
     current_user = request.user
@@ -47,20 +49,8 @@ def classes(request):
     print("-" * 30)
     print("Hello")
     classes= Classroom.objects.all()
-    
-    print(classes)
     return render(request,'classes.html',{'classes':classes})
-    if request.method == 'POST':
-        form = StudentSignUp(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('login')
-
-    else:
-        form = StudentSignUp()
-    return render (request, 'portal/signup.html', {'form':form})
+    
 
 def new_class(request):
     current_user = request.user

@@ -10,11 +10,7 @@
     {% endblock %}
 </head>
 <body>
-    {% if user.is_authenticated %}
-    <h1> <a href="{% url 'logout' %}">Log out</a> </h1>
-    {% else %}
-    <h1> <a href="{% url 'logout' %}"></a> </h1>
-    {% endif %}
+    
     {% block content %}
     {% endblock %}
 
@@ -24,3 +20,10 @@
     {% endblock %}
 </body>
 </html>
+
+
+{% if user.is_authenticated %}
+    <h1> <a href="{% url 'logout' %}">Log out</a> </h1>
+    {% else %}
+    <h1> <a href="{% url 'logout' %}"></a> </h1>
+    {% endif %}
