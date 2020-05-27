@@ -32,7 +32,7 @@
             <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
                 <h5 class="card-title mt-3 mb-3">{{ class_item.class_name }}</h5>
                     <p class="card-text">Class teacher : Teacher Name <br> Contact : Teacher Contact</p>
-                    <button type="button" class="btn btn-secondary"> <a href="#"> Join Class </a> </button>
+                    <button type="button" class="btn btn-secondary"> <a href="{% url 'unit' class_item.id %}"> Join Class </a> </button>
           </div>
             </div>
             {% endfor %} 

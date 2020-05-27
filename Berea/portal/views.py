@@ -5,19 +5,15 @@ from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
 from .models import Classroom
 from .forms import ClassRoomForm,StudentSignUp
-
+from django.contrib.auth import logout
+from .models import Student
 # Create your views here.
-
-@login_required
-def home_view(request):
-    return render(request, 'student/index.html')
-
 
 def signup_view(request):
     if request.method == 'POST':
         form = StudentSignUp(request.POST)
         if form.is_valid():
-            form.save()
+            Student=form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -25,7 +21,7 @@ def signup_view(request):
             return redirect('login')
     else:
         form = StudentSignUp()
-    return render(request, 'signup_view.html', {'form': form})
+    return render(request, 'portal/signup.html', {'form': form})
 
 def new_class(request):
     current_user = request.user
@@ -61,10 +57,12 @@ def new_class(request):
         form = ClassRoomForm()
     return render(request, 'new_class.html', {"form":form})
 @login_required(login_url='/login/')
-def classes(request):
+def classes(request,classroom_id):
     print("-" * 30)
     print("Hello")
-    classes= Classroom.objects.all()
+    current_user = request.user
+    userID= current_user.id
+    classes= Classroom.objects.filter(userID ='classroom_id')
     
     print(classes)
     return render(request,'class.html',{'classes':classes})
@@ -79,3 +77,5 @@ def units(request,un_id):
 def notes(request,not_id):
     notes = Notes.objects.filter(unit_id=not_id)
     return render(request,'notes.html',{"notes": notes})
+
+

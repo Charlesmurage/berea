@@ -33,6 +33,7 @@ class Notes(models.Model):
     #     return self.unit_name      
 
 class Student(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='student_profile', null=True)
     firstname = models.CharField(max_length=30)
     seccondname = models.CharField(max_length=30)
     studentID = models.CharField(max_length=30)
