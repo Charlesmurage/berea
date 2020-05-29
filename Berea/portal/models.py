@@ -1,26 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class Classroom(models.Model):
     class_name = models.CharField(max_length=200)
-    # students = models.ManyToManyField(Student, through='Membership')
-    units = models.ForeignKey('Unit' , related_name='+',on_delete=models.CASCADE, null= True, blank= True) 
-class Student(models.Model):
-    firstname = models.CharField(max_length=30)
-    seccondname = models.CharField(max_length=30)
-    studentID = models.CharField(max_length=30)
-    email = models.EmailField()
-    gender = models.CharField(max_length=10)
-    dob = models.DateField()
-    nationality = models.CharField(max_length=30 , blank=True)
-    phoneNo = models.CharField(max_length=30 , blank=True)
-    avatar = models.ImageField(upload_to='avatar', blank=True)
-    classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE, null= True)
-
+    students = models.ManyToManyField( 'Student', related_name = 'Student', through='Membership')
+    
     def __str__(self):
-        return self.firstname
+        return self.class_name
 
 
 
@@ -41,7 +28,12 @@ class Notes(models.Model):
     note = models.FileField(null = True, upload_to='notes')
     unit = models.ForeignKey(Unit, on_delete= models.CASCADE, null = True)  
 
-
+    # def __str__(self):
+    #     return self.unit_name      
+class Student(AbstractUser):
+    full_name = models.CharField(max_length=30, null=True)
+    email = models.EmailField(max_length=30, null=True)
+    classroom_id = models.ForeignKey(Classroom, on_delete=models.CASCADE,null=True)
 
 
 

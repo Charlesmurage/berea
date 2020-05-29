@@ -1,0 +1,44 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid" style="background-image: url(../static/imgs/jumbotron.jpg); background-size: 100%;">
+    <div class="container">
+      <h3 class="display-6"> Welcome back to Berea E-Leranin</h3>
+    </div>
+  </div>
+  <div class='class-section'>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="class-title">
+                      <h3 class="title">Class Name</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+<div class='class-cards'>
+    <div class="container mt-2">
+        <!--   <div class="card card-block mb-2">
+            <h4 class="card-title">Card 1</h4>
+            <p class="card-text">Welcom to bootstrap card styles</p>
+            <a href="#" class="btn btn-primary">Submit</a>
+          </div>   -->
+          <div class="row">
+            {% for class_item in classes %}
+            <div class="col-md-4 col-sm-6">
+              <div class="card card-block">
+            <img src="https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg" alt="Photo of sunset">
+                <h5 class="card-title mt-3 mb-3">{{ class_item.class_name }}</h5>
+                    <p class="card-text">Class teacher : Teacher Name <br> Contact : Teacher Contact</p>
+                    <button type="button" class="btn btn-secondary"> <a href="{% url 'unit' class_item.id %}"> Join Class </a> </button>
+          </div>
+            </div>
+            {% endfor %} 
+          </div>
+          
+        </div>
+</div>
+
+{% endblock %}

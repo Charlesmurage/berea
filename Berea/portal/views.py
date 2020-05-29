@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
-from .models import Classroom
+from .models import Classroom, Student
 from .forms import ClassRoomForm,StudentSignUp
 from .decorators import allowed_users
 from django.contrib.auth.models import Group
@@ -68,10 +68,12 @@ def new_class(request):
         form = ClassRoomForm()
     return render(request, 'new_class.html', {"form":form})
 @login_required(login_url='/login/')
-def classes(request):
+def classes(request,classroom_id):
     print("-" * 30)
     print("Hello")
-    classes= Classroom.objects.all()
+    current_user = request.user
+    userID= current_user.id
+    classes= Classroom.objects.filter(userID ='classroom_id')
     
     print(classes)
     return render(request,'class.html',{'classes':classes})
@@ -86,3 +88,5 @@ def units(request,un_id):
 def notes(request,not_id):
     notes = Notes.objects.filter(unit_id=not_id)
     return render(request,'notes.html',{"notes": notes})
+
+
