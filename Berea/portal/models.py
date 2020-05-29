@@ -1,7 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
@@ -31,22 +30,11 @@ class Notes(models.Model):
 
     # def __str__(self):
     #     return self.unit_name      
+class Student(AbstractUser):
+    full_name = models.CharField(max_length=30, null=True)
+    email = models.EmailField(max_length=30, null=True)
+    classroom_id = models.ForeignKey(Classroom, on_delete=models.CASCADE,null=True)
 
-class Student(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='student_profile', null=True)
-    firstname = models.CharField(max_length=30)
-    seccondname = models.CharField(max_length=30)
-    studentID = models.CharField(max_length=30)
-    email = models.EmailField()
-    gender = models.CharField(max_length=10)
-    dob = models.DateField()
-    nationality = models.CharField(max_length=30)
-    phoneNo = models.CharField(max_length=30)
-    avatar = models.ImageField(upload_to='avatar', blank=True)
-    classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE, null= True)
-
-    def __str__(self):
-        return self.firstname
 
 
 class Membership(models.Model):

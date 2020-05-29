@@ -6,14 +6,13 @@ from .models import Classroom, Student
 
 
 class StudentSignUp(UserCreationForm):
-    first_name= forms.CharField(required=True)
-    last_name= forms.CharField(required=True)
+    full_name= forms.CharField(required=True)
     email= forms.EmailField()
     
     
     class Meta:
-        model = User
-        fields =['first_name', 'last_name','username','email','password1','password2']
+        model = Student
+        fields =['full_name','username','email','password1','password2']
         # model = get_user_model()
         # fields =['first_name', 'last_name','username','email','password1','password2'] 
 

@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
-from .models import Classroom
+from .models import Classroom, Student
 from .forms import ClassRoomForm,StudentSignUp
 from django.contrib.auth import logout
 from .models import Student
@@ -13,7 +13,7 @@ def signup_view(request):
     if request.method == 'POST':
         form = StudentSignUp(request.POST)
         if form.is_valid():
-            Student=form.save()
+            form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
