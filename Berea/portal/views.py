@@ -34,7 +34,7 @@ def classes(request):
     print("-" * 30)
     print("Hello")
     classes= Classroom.objects.all()
-    return render(request,'classes.html',{'classes':classes})
+    return render(request,'class.html',{'classes':classes})
     
     
 
