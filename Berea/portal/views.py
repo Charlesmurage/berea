@@ -28,55 +28,15 @@ def signup_view(request):
     else:
         form = StudentSignUp()
     return render(request, 'portal/signup_view.html', {'form': form})
-
-def new_class(request):
-    current_user = request.user
-    if request.method =='POST':
-        form = ClassRoomForm(request.POST, request.FILES)
-
-
-        if form.is_valid():
-            group = form.save(commit=False)
-
-            group.save()
-            return redirect('home')
-
-    else:
-        form = ClassRoomForm()
-    return render(request, 'new_class.html', {"form":form})
-
+    
+@login_required(login_url='/login/')
 def classes(request):
     print("-" * 30)
     print("Hello")
     classes= Classroom.objects.all()
     return render(request,'classes.html',{'classes':classes})
     
-
-def new_class(request):
-    current_user = request.user
-    if request.method =='POST':
-        form = ClassRoomForm(request.POST, request.FILES)
-
-
-        if form.is_valid():
-            group = form.save(commit=False)
-
-            group.save()
-            return redirect('home')
-
-    else:
-        form = ClassRoomForm()
-    return render(request, 'new_class.html', {"form":form})
-@login_required(login_url='/login/')
-def classes(request,classroom_id):
-    print("-" * 30)
-    print("Hello")
-    current_user = request.user
-    userID= current_user.id
-    classes= Classroom.objects.filter(userID ='classroom_id')
     
-    print(classes)
-    return render(request,'class.html',{'classes':classes})
 
 @login_required(login_url='/login/')
 def units(request,un_id):

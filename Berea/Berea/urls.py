@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'classes/units/notes/all/(\d+)/',views.notes, name="notes"),
     
     path('StudentPortal/',home_view, name='studentportal'),
-    path('student/', include('Student.urls'))
     
 
 ]
