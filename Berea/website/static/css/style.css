@@ -582,12 +582,12 @@ h1, h2, h3, h4, h5,
       .intro-section:before {
         width: 100%; } }
   .intro-section h1 {
-    font-size: 7rem;
-    font-weight: 900;
-    color: #fff; }
+    font-size: 4rem;
+    font-weight: 700;
+    color: #EFD6AC; }
   .intro-section p {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 1.1rem;
+    color: #52B7AD;
+    font-size: 2rem;
     max-width: 400px; }
 
 .custom-breadcrumns {
@@ -640,6 +640,11 @@ h1, h2, h3, h4, h5,
       margin-bottom: 30px; }
     .section-bg.style-1 p {
       color: #7697c6; }
+    .section-bg img{
+      border-radius: 50%;
+      height: 300px;
+      width: 300px;
+    }
 
 .news-updates {
   padding: 5rem 0; }
@@ -897,7 +902,7 @@ h1, h2, h3, h4, h5,
   .course-1-item figure {
     position: relative; }
   .course-1-item .category {
-    background: #51be78;
+    background: #093148;
     padding: 20px; }
     .course-1-item .category h3 {
       color: #fff;

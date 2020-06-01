@@ -1,26 +1,32 @@
 {% extends 'portal/base.html' %}
+{%load bootstrap4%}
+{% load static %}
+{{block.super}}
+{%block content%}
+<section class="signup">
+  <div class="container">
+      <div class="signup-content">
+          <div class="signup-form">
+              <h2 class="form-title">Student Login</h2>
+              <form method="POST" class="register-form" id="register-form">
+                {%csrf_token%}
+                {%bootstrap_form form%}
+                  <div class="form-group form-button">
+                      <input type="submit" name="signup" id="signup" class="form-submit" value="Sign In"/>
+                  </div>
+              </form>
+          </div>
+          <div class="signup-image">
+              <figure><img src="{% static 'images/signup-image.jpg' %}" alt="sing up image"></figure>
+              <a href="#" class="signup-image-link">I am already member</a>
+          </div>
+      </div>
+  </div>
+</section>
 
-{% block content %}
-  <h2>Log in to Tutor Page</h2>
-  {% if form.errors %}
-    <p style="color: red">Your username and password didn't match. Please try again.</p>
-  {% endif %}
-  <form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="home" value="{{ next }}" />
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}<br>
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-        {% if field.help_text %}
-          <p><small style="color: grey">{{ field.help_text }}</small></p>
-        {% endif %}
-      </p>
-    {% endfor %}
-    <button type="submit">Log in</button>
-    <a href="{% url 'signup' %}">New to My Site? Sign up</a>
-  </form>
-{% endblock %}
+
+{%endblock%}
+
+
+
+

@@ -8,6 +8,7 @@ from portal.views import  classes
 from portal.views import home_view, classes, notes,signup_view
 from django.conf import settings
 from django.conf.urls.static import static
+from Student.views import Home
 
 
 urlpatterns = [
@@ -21,7 +22,7 @@ urlpatterns = [
     url(r'classes/units/all/(\d+)/', views.units, name="unit"),
     url(r'classes/units/notes/all/(\d+)/',views.notes, name="notes"),
     
-    path('StudentPortal/',home_view, name='studentportal'),
+    path('StudentPortal/',Home, name='studentportal'),
     
 
 ]
