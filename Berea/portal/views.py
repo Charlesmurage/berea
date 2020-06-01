@@ -27,7 +27,7 @@ def signup_view(request):
             return redirect('login')
     else:
         form = StudentSignUp()
-    return render(request, 'portal/signup_view.html', {'form': form})
+    return render(request, 'portal/signup.html', {'form': form})
     
 @login_required(login_url='/login/')
 def classes(request):
