@@ -16,6 +16,7 @@ def home_view(request):
 
 
 def signup_view(request):
+    form= StudentSignUp()
     return render(request, 'portal/signup.html', {'form': form})
     
 @login_required(login_url='/login/')
