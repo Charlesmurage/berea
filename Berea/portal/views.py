@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
 from .models import Classroom, Student
-from .forms import ClassRoomForm,StudentSignUp
+from .forms import StudentSignUp
 from .decorators import allowed_users
 from django.contrib.auth.models import Group
 
@@ -16,17 +16,6 @@ def home_view(request):
 
 
 def signup_view(request):
-    if request.method == 'POST':
-        form = StudentSignUp(request.POST)
-        if form.is_valid():
-            user=form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            group = Group.objects.get(name='students')
-            user.groups.add(group)
-            return redirect('login')
-    else:
-        form = StudentSignUp()
     return render(request, 'portal/signup.html', {'form': form})
     
 @login_required(login_url='/login/')
