@@ -33,5 +33,10 @@ class Notes(models.Model):
     def __str__(self):
         return self.note_title
 
+class Task(models.Model):
+    assignment_name = models.CharField(max_length = 60)
+    assignment = models.FileField(null = False, upload_to='assignments')
+    unit_id = models.ForeignKey(Unit, on_delete= models.CASCADE, null = True)
+
 
 	

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  Unit, Classroom, Notes
+from .models import  Unit, Classroom, Notes, Task
 
 # Register your models here.
 
@@ -19,3 +19,8 @@ class NotesAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
 
 admin.site.register(Notes)
+
+class TaskAdmin(admin.ModelAdmin):
+    filter_horizontal = ('tags',)
+
+admin.site.register(Task)
