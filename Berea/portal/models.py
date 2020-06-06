@@ -20,18 +20,18 @@ class Unit(models.Model):
     unit_code = models.CharField(max_length=60)
     tutor_name = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_createdby', on_delete=models.CASCADE)
     tutor_contact = models.CharField(max_length=10)
-    classroo_id = models.ManyToManyField(Classroom)
+    classroom_id = models.ManyToManyField(Classroom)
 
 
     def __str__(self):
         return self.unit_name
 
 class Notes(models.Model):
-    note_title = models.FileField(null = True, upload_to='notes')
+    note = models.FileField(null = True, upload_to='notes')
     unit = models.ForeignKey(Unit, on_delete= models.CASCADE, null = True)  
-
+    note_title = models.CharField(null=True,max_length=30)
     def __str__(self):
-        return self.note
+        return self.note_title
 
 
 	

@@ -19,9 +19,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bootstrap4',
-    'portal.apps.PortalConfig',
     'website.apps.WebsiteConfig',
     'Student.apps.StudentConfig',
+    'portal.apps.PortalConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

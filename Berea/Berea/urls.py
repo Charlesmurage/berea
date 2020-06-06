@@ -4,7 +4,7 @@ from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from portal import views
-from portal.views import  classes
+from portal.views import  classes,signup_view
 from portal.views import home_view, classes, notes,signup_view
 from django.conf import settings
 from django.conf.urls.static import static

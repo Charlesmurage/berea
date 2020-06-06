@@ -9,7 +9,7 @@
           <div class="col-lg-6">
             <div class="signup-form">
                 <h2 class="form-title">Student signUp</h2>
-                <form method="POST" action="{% url 'signup_view' %}"class="register-form" id="register-form">
+                <form method="POST"class="register-form" id="register-form">
                   {%csrf_token%}
                   {%bootstrap_form form%}
                     <div class="form-group form-button">

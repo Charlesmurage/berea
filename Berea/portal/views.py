@@ -9,6 +9,7 @@ from .decorators import allowed_users
 from django.contrib.auth.models import Group
 from django.views.generic import CreateView
 from .forms import StudentSignUp
+from .decorators import unauthenticated_user
 
 # Create your views here.
 
@@ -35,7 +36,7 @@ def classes(request):
     print("-" * 30)
     print("Hello")
     classes= Classroom.objects.all()
-    return render(request,'class.html',{'classes':classes})
+    return render(request,'students/index.html',{'classes':classes})
     
     
 
@@ -46,6 +47,7 @@ def units(request,un_id):
     return render(request,'units.html',{"unit": unit})
 
 @login_required(login_url='/login/')
+@allowed_users(allowed_roles=['comrades'])
 def notes(request,not_id):
     notes = Notes.objects.filter(unit_id=not_id)
     return render(request,'notes.html',{"notes": notes})
