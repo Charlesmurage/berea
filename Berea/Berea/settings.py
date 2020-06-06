@@ -14,15 +14,14 @@ SECRET_KEY = '2oen1+6kz76r#(1t)_22lweexx6_drsqf4^4+=*g2s@7u#cj_#'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'portal.User'
 
 # Application definition
 
 INSTALLED_APPS = [
     'bootstrap4',
+    'portal.apps.PortalConfig',
     'website.apps.WebsiteConfig',
     'Student.apps.StudentConfig',
-    'portal.apps.PortalConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -3,10 +3,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Classroom, Unit, Notes
 from django.contrib.auth import login, authenticate
-from .models import Classroom, Student
+from .models import Classroom
 from .forms import StudentSignUp
 from .decorators import allowed_users
 from django.contrib.auth.models import Group
+from django.views.generic import CreateView
+from .forms import StudentSignUp
 
 # Create your views here.
 
@@ -16,9 +18,18 @@ def home_view(request):
 
 
 def signup_view(request):
-    form= StudentSignUp()
+    if request.method == 'POST':
+        form = StudentSignUp(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('login')
+    else:
+        form = StudentSignUp()
     return render(request, 'portal/signup.html', {'form': form})
-    
+        
+
 @login_required(login_url='/login/')
 def classes(request):
     print("-" * 30)
