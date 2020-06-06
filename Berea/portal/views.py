@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Classroom, Unit, Notes
+from .models import Classroom, Unit, Notes,Task
 from django.contrib.auth import login, authenticate
 from .models import Classroom
 from .forms import StudentSignUp
@@ -50,6 +50,7 @@ def units(request,un_id):
 @allowed_users(allowed_roles=['comrades'])
 def notes(request,not_id):
     notes = Notes.objects.filter(unit_id=not_id)
+    assignment = Task.objects.filter(unit_id=not_id)
     return render(request,'notes.html',{"notes": notes})
 
 
