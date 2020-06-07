@@ -50,7 +50,12 @@ def units(request,un_id):
 @allowed_users(allowed_roles=['comrades'])
 def notes(request,not_id):
     notes = Notes.objects.filter(unit_id=not_id)
-    assignment = Task.objects.filter(unit_id=not_id)
     return render(request,'notes.html',{"notes": notes})
 
-
+@login_required(login_url='/login/')
+@allowed_users(allowed_roles=['comrades'])
+def assignments(request,ass_id):
+    assignment = Task.objects.filter(unit_id=ass_id)
+    print (assignment)
+    return render(request,'assignments.html',{"assignment": assignment})
+  

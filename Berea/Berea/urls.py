@@ -21,6 +21,7 @@ urlpatterns = [
     path('classes/',views.classes, name="classes"),
     url(r'classes/units/all/(\d+)/', views.units, name="unit"),
     url(r'classes/units/notes/all/(\d+)/',views.notes, name="notes"),
+    url(r'classes/units/assignments/all/(\d+)/',views.assignments, name="assignment"),
     
     path('StudentPortal/',Home, name='studentportal'),
     
