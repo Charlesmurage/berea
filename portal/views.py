@@ -44,13 +44,13 @@ def classes(request):
 def units(request,un_id):
     unit = Unit.objects.filter(classroom_id=un_id)
     # print([x.classname for x in classes])
-    return render(request,'units.html',{"unit": unit})
+    return render(request,'students/units.html',{"unit": unit})
 
 @login_required(login_url='/login/')
 @allowed_users(allowed_roles=['comrades'])
 def notes(request,not_id):
     notes = Notes.objects.filter(unit_id=not_id)
-    return render(request,'notes.html',{"notes": notes})
+    return render(request,'students/notes.html',{"notes": notes})
 
 @login_required(login_url='/login/')
 @allowed_users(allowed_roles=['comrades'])
