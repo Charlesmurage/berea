@@ -9,6 +9,9 @@ from portal.views import home_view, classes, notes,signup_view
 from django.conf import settings
 from django.conf.urls.static import static
 from Student.views import Home
+from django.conf.urls import url
+
+from django.views.static import serve
 
 
 urlpatterns = [
@@ -24,6 +27,9 @@ urlpatterns = [
     url(r'classes/units/assignments/all/(\d+)/',views.assignments, name="assignment"),
     
     path('StudentPortal/',Home, name='studentportal'),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     
 
 ]
